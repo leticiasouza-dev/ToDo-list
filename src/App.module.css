@@ -1,6 +1,6 @@
 .main{
     background: var(--gray-600);
-    height: calc(100vh - 8rem);
+    height: calc(100vh - 10rem);
 
     display: flex;
     justify-content: center;
@@ -35,11 +35,38 @@
 
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 6px;
     cursor: pointer;
 }
 
+.containerTasks{
+    width: 45rem;
 
+    margin-top: 5rem;
+}
+
+.informacoes{
+    display: flex;
+    justify-content: space-between;
+}
+
+.paragrafo1{
+    color: var(--blue);
+}
+
+.informacoes p > span{
+    background: var(--gray-400);
+    color: var(--gray-200);
+    width: 2rem;
+
+    padding:  0.2rem 0.5rem;
+    border-radius: 2rem;
+}
+
+.paragrafo2{
+    color: var(--purple);
+}
 
 @media screen and (max-width: 428px) {
     .formNovaTarefa input {
