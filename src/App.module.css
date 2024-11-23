@@ -1,0 +1,48 @@
+.main{
+    background: var(--gray-600);
+    height: calc(100vh - 8rem);
+
+    display: flex;
+    justify-content: center;
+}
+
+.formNovaTarefa{
+    position: absolute;
+    top: calc(10rem - 1.6rem);
+
+    width: 46rem;
+    display: flex;
+
+    justify-content: space-evenly;
+}
+
+.formNovaTarefa input{
+    background: var(--gray-500);
+    width: 39rem;
+
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+}
+
+.formNovaTarefa button{
+    background: var(--blue-dark);
+    color: var(--gray-100);
+    width: 5rem;
+
+    border-radius: 8px;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 428px) {
+    .formNovaTarefa input {
+        width: calc(38rem / 2);
+    }
+}
