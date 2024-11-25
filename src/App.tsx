@@ -6,6 +6,7 @@ import { Header } from './components/Header/Header'
 
 import iconBotao from './assets/iconBotao.svg'
 import { Empty } from './components/Empty/Empty'
+import { Task } from './components/Task/Task'
 
 function App() {
   return(
@@ -26,7 +27,9 @@ function App() {
                   <p className={styles.paragrafo2}>Concluídas <span>0</span></p>
               </div>
 
-              <Empty/>
+              <div>
+                <Task/>
+              </div>
           </div>
       </main>
     </body>
