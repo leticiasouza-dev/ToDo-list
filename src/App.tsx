@@ -9,13 +9,13 @@ import { Empty } from './components/Empty/Empty'
 import { Task } from './components/Task/Task'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
- export interface Task {
+ export interface ITask {
   id: number;
   text: string;
 }
 
 function App() {
-  const [tarefa, setTarefa] = useState<Task[]>([]);
+  const [tarefa, setTarefa] = useState<ITask[]>([]);
   const [valorInput, setValorInput] = useState('');
   const [tarefasCriadas, setTarefasCriadas] = useState(0);
   const [tarefasConcluidas, setTarefasConcluidas] = useState(0);
@@ -27,15 +27,22 @@ function App() {
 
   function handleAdicionandoTarefa(event:  FormEvent<HTMLFormElement> ){
     event.preventDefault()
-    
-    const novaTarefa: Task = {
+
+    const novaTarefa: ITask = { // criando nova tarefa passando o valor do input
       id: new Date().getTime(),
       text: valorInput
     }
 
-    setTarefa((state) => [...state, novaTarefa]);
+    setTarefa((state) => [...state, novaTarefa]); // mantendo as tarefas anteriores e adicionado a nova
     setTarefasCriadas((state) => state + 1);
-    console.log(tarefa)
+  }
+
+  function handleRemoverTarefa(id: number){ // removendo a tarefa pelo id
+    const tarefasFiltradas = tarefa.filter((tarefas) => {
+      return tarefas.id !== id // mantendo no array somente as tarefas com o id diferente do id passado
+    });
+
+    setTarefa(tarefasFiltradas)  // deixando no array as tarefas com o id difernte do id passado
   }
 
   return(
@@ -61,10 +68,10 @@ function App() {
               </div>
 
               <div>
-              {tarefasCriadas > 0 ? ( 
+              {tarefasCriadas > 0 ? (
 	              <div>
                   {tarefa.map((task) => (
-                    <Task content={task.text}/>
+                    <Task key={task.id} content={task.text} removerTarefa={handleRemoverTarefa} data={task}/>
                   ))}
                 </div>
               ) : (
