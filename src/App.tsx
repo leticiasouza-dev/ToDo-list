@@ -34,15 +34,18 @@ function App() {
     }
 
     setTarefa((state) => [...state, novaTarefa]); // mantendo as tarefas anteriores e adicionado a nova
+    setValorInput('')
     setTarefasCriadas((state) => state + 1);
   }
 
   function handleRemoverTarefa(id: number){ // removendo a tarefa pelo id
     const tarefasFiltradas = tarefa.filter((tarefas) => {
       return tarefas.id !== id // mantendo no array somente as tarefas com o id diferente do id passado
+      
     });
 
     setTarefa(tarefasFiltradas)  // deixando no array as tarefas com o id difernte do id passado
+    setTarefasCriadas((state) => state - 1);
   }
 
   return(
@@ -67,16 +70,16 @@ function App() {
                   <p className={styles.paragrafo2}>Concluídas <span>{`${tarefasConcluidas} de ${tarefasCriadas}`}</span></p>
               </div>
 
-              <div>
-              {tarefasCriadas > 0 ? (
-	              <div>
-                  {tarefa.map((task) => (
-                    <Task key={task.id} content={task.text} removerTarefa={handleRemoverTarefa} data={task}/>
-                  ))}
-                </div>
-              ) : (
-                <Empty/>
-              )}
+              <div className={styles.divTasks}>
+                {tarefasCriadas > 0 ? (
+                  <div className={styles.Task}>
+                    {tarefa.map((task) => (
+                      <Task key={task.id} content={task.text} removerTarefa={handleRemoverTarefa} data={task}/>
+                    ))}
+                  </div>
+                ) : (
+                  <Empty/>
+                )}
 
               </div>
           </div>
