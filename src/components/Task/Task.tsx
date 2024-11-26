@@ -2,7 +2,11 @@ import {Trash, Check } from 'phosphor-react'
 import styles from './Task.module.css'
 import { useState } from 'react'
 
-export function Task(){
+interface TarefaProps{
+    content: string
+}
+
+export function Task({content}:TarefaProps){
     const [className, setClassName] = useState('checkbox_unchecked');
 
     function handleTaskColor(){
@@ -15,7 +19,7 @@ export function Task(){
                 <input type="checkbox" className={styles.checkbox}/>
                 <span className={`${styles.check} ${className}`}></span>
 
-                <p className={styles.paragrafo}>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integerssssssssssssssssssssssssssssssssss</p>
+                <p className={styles.paragrafo}>{content}</p>
                 <Trash size={22} />
             </label>
         </div>
