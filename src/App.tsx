@@ -12,6 +12,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
  export interface ITask {
   id: number;
   text: string;
+  isTarefaClicada: boolean
 }
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
     const novaTarefa: ITask = { // criando nova tarefa passando o valor do input
       id: new Date().getTime(),
       text: valorInput,
+      isTarefaClicada: false
     }
 
     setTarefa((state) => [...state, novaTarefa]); // mantendo as tarefas anteriores e adicionado a nova
@@ -46,6 +48,26 @@ function App() {
 
     setTarefa(tarefasFiltradas)  // deixando no array as tarefas com o id difernte do id passado
     setTarefasCriadas((state) => state - 1);
+  }
+
+  function handleAlterarStatus(id: number){
+    setTarefa((prev) => prev.map((tarefa) => {
+      if(tarefa.id === id){
+        const novoStatus = !tarefa.isTarefaClicada;
+        if (novoStatus && !tarefa.isTarefaClicada) {
+          setTarefasConcluidas(tarefasConcluidas + 1);  // Incrementa se a tarefa foi concluída
+        }
+        // Se a tarefa foi desmarcada (isTarefaClicada se tornando false)
+        if (!novoStatus && tarefa.isTarefaClicada) {
+          setTarefasConcluidas(tarefasConcluidas- 1);  // Decrementa se a tarefa foi desmarcada
+        }
+
+        return {...tarefa, isTarefaClicada:novoStatus};
+      } else{
+        
+        return tarefa;
+      }
+    }))
   }
 
   return(
@@ -74,7 +96,14 @@ function App() {
                 {tarefasCriadas > 0 ? (
                   <div className={styles.Task}>
                     {tarefa.map((task) => (
-                      <Task key={task.id} content={task.text} removerTarefa={handleRemoverTarefa} data={task}/>
+                      <Task 
+                        key={task.id} 
+                        content={task.text} 
+                        removerTarefa={handleRemoverTarefa} 
+                        data={task}
+                        alterarStatus={handleAlterarStatus}
+                        valorStatus={task.isTarefaClicada}
+                        />
                     ))}
                   </div>
                 ) : (
