@@ -30,7 +30,7 @@ function App() {
 
     const novaTarefa: ITask = { // criando nova tarefa passando o valor do input
       id: new Date().getTime(),
-      text: valorInput
+      text: valorInput,
     }
 
     setTarefa((state) => [...state, novaTarefa]); // mantendo as tarefas anteriores e adicionado a nova

@@ -40,9 +40,19 @@
     border: 2px solid var(--blue);
 }
 
+.checkbox-checked{
+    border: 2px solid var(--purple-dark);
+    background-color: var(--purple-dark);
+}
+
 .paragrafo{
     padding: 0 0.75rem;
     user-select: none;
+}
+
+.paragrafo-checked{
+    text-decoration: line-through;
+    color: var(--gray-300);
 }
 
 .paragrafo:checked{

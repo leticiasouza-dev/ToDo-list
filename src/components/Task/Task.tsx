@@ -7,27 +7,29 @@ import { ITask} from '../../App'
 interface TarefaProps{
     data: ITask
     content: string
-    removerTarefa: (id: number) => void
+    removerTarefa: (valor: number) => void
 }
 
 export function Task({content, removerTarefa, data}:TarefaProps){
-    const [className, setClassName] = useState('checkbox_unchecked');
-
-    function handleTaskColor(){
-        setClassName('checkbox_checked')
-    }
-
+    const[tarefaClicada, setTarefaClicada] = useState(false)
+    const classNamesTarefas = tarefaClicada ? styles['checkbox-checked'] : styles['checkbox_unchecked']
+    const classNameParagrafo = tarefaClicada ? styles['paragrafo-checked'] : styles['paragrafo']
+    
     function handleDeletar(){
         removerTarefa(data.id)
     }
 
-    return(
-        <div className={styles.Task}>
-            <label htmlFor="" onClick={handleTaskColor}>
-                <input type="checkbox" className={styles.checkbox}/>
-                <span className={`${styles.check} ${className}`}></span>
+    function handleMudarCheckbox(){
+        setTarefaClicada(true)
+    }
 
-                <p className={styles.paragrafo}>{content}</p>
+    return(
+        <div className={styles.Task}  >
+            <label htmlFor=""  onClick={handleMudarCheckbox}>
+                <input type="checkbox" className={styles.checkbox}/>
+                <span className={`${styles.check} ${classNamesTarefas}`}></span>
+
+                <p className={classNameParagrafo}>{content}</p>
 
                 <button onClick={handleDeletar}>
                     <Trash size={22}/>
