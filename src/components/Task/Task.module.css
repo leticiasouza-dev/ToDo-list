@@ -40,10 +40,19 @@
     border: 2px solid var(--blue);
 }
 
+.checkbox_unchecked:hover{
+    background-color: rgba(30, 111, 159, 0.2);
+}
+
 .checkbox-checked{
     border: 2px solid var(--purple-dark);
     background-color: var(--purple-dark);
 }
+
+.checkbox-checked:hover {
+    border: 2px solid var(--purple);
+    background-color: var(--purple);
+  }
 
 .paragrafo{
     padding: 0 0.75rem;
@@ -57,5 +66,24 @@
 
 .paragrafo:checked{
     text-decoration: line-through;
+}
+
+.buttonDeletar{
+    background: none;
+    color: var(--gray-300);
+    border: none;
+
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 3px;
+}
+
+.buttonDeletar:hover{
+    background: var(--gray-400);
+    color: var(--danger);
+}
+
+.iconDeletar{
+
 }
 

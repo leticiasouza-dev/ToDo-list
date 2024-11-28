@@ -1,4 +1,4 @@
-import {Trash} from 'phosphor-react'
+import {Trash, Check} from 'phosphor-react'
 import styles from './Task.module.css'
 import { useState } from 'react'
 
@@ -24,12 +24,14 @@ export function Task({content, removerTarefa, data, alterarStatus, valorStatus}:
         <div className={styles.Task}  >
             <label htmlFor=""  onClick={() => alterarStatus(data.id)}>
                 <input type="checkbox" className={styles.checkbox}/>
-                <span className={`${styles.check} ${classNamesTarefas}`}></span>
+                <span className={`${styles.check} ${classNamesTarefas}`}>
+                    {data.isTarefaClicada === true ? <Check /> : ''}
+                </span>
 
-                <p className={classNameParagrafo}>{content}</p>
+                <p className={`${styles.paragrafo} ${classNameParagrafo}`}>{content}</p>
 
-                <button onClick={handleDeletar}>
-                    <Trash size={22}/>
+                <button className={styles.buttonDeletar} onClick={handleDeletar}>
+                    <Trash size={20} className={styles.iconDeletar}/>
                 </button>
                 
             </label>

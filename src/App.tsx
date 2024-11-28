@@ -61,10 +61,13 @@ function App() {
         if (!novoStatus && tarefa.isTarefaClicada) {
           setTarefasConcluidas(tarefasConcluidas- 1);  // Decrementa se a tarefa foi desmarcada
         }
+        
+        if(!novoStatus && !tarefa.isTarefaClicada){
+          setTarefasConcluidas(0)
+        }
 
         return {...tarefa, isTarefaClicada:novoStatus};
       } else{
-        
         return tarefa;
       }
     }))
@@ -76,13 +79,14 @@ function App() {
 
       <main className={styles.main}>
           <form  className={styles.formNovaTarefa} onSubmit={handleAdicionandoTarefa}>
-            <input 
+            <input
+              className={styles.inputNovaTarefa} 
               type="text" 
               placeholder='Adicione uma nova tarefa'
               value={valorInput} 
               onChange={handleCapturaTarefa}
             />
-            <button type='submit' >Criar <img src={iconBotao} alt="" /></button>
+            <button type='submit' className={styles.buttonCriar}>Criar <img src={iconBotao} alt="" /></button>
           </form>
 
           <div className={styles.containerTasks}>

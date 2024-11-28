@@ -16,7 +16,7 @@
     justify-content: space-around;
 }
 
-.formNovaTarefa input{
+.inputNovaTarefa{
     background: var(--gray-500);
     width: 39rem;
 
@@ -25,7 +25,12 @@
     border: none;
 }
 
-.formNovaTarefa button{
+.inputNovaTarefa:focus{
+    outline: none; 
+    border: 1px solid var(--purple-dark);
+}
+
+.buttonCriar{
     background: var(--blue-dark);
     color: var(--gray-100);
     width: 5rem;
@@ -41,6 +46,10 @@
     justify-content: center;
     gap: 6px;
     cursor: pointer;
+}
+
+.buttonCriar:hover{
+    background: var(--blue);
 }
 
 .containerTasks{
